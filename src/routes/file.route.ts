@@ -9,6 +9,8 @@ import {
   uploadFile,
   uploadMultipleFiles,
 } from "../controllers/file.controller";
+import { validate } from "../middlewares/validate.middleware";
+import { FileIdParamSchema } from "../utils/schema";
 
 const router = Router();
 
@@ -20,8 +22,23 @@ router.post(
   uploadMultipleFiles
 );
 router.get("/me", isAuthenticated, getMyFile);
-router.get("/:id/download", isAuthenticated, downloadFile);
-router.get("/:id", isAuthenticated, getFileMetadata);
-router.delete("/:id", isAuthenticated, deleteFile);
+router.get(
+  "/:id/download",
+  validate({ params: FileIdParamSchema }),
+  isAuthenticated,
+  downloadFile
+);
+router.get(
+  "/:id",
+  validate({ params: FileIdParamSchema }),
+  isAuthenticated,
+  getFileMetadata
+);
+router.delete(
+  "/:id",
+  validate({ params: FileIdParamSchema }),
+  isAuthenticated,
+  deleteFile
+);
 
 export default router;
