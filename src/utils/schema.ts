@@ -16,5 +16,5 @@ export const loginSchema = z.object({
 });
 
 export const FileIdParamSchema = z.object({
-  id: z.string().length(24, { message: "Invalid blog ID" }),
+  id: z.string().length(24, { message: "Invalid file ID" }),
 });
