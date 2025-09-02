@@ -14,7 +14,7 @@ export class AuthService {
     await user.save();
   }
   static async login(email: string, password: string) {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).select("+password");
     if (!user) throw new Error("User not found");
 
     const isMatch = await bcrypt.compare(password, user.password);
@@ -25,6 +25,12 @@ export class AuthService {
       userRole: user.role,
     });
 
-    return { token, user };
+    const safeUser = {
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    };
+
+    return { token, user: safeUser };
   }
 }
