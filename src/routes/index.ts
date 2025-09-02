@@ -5,6 +5,6 @@ import { Router } from "express";
 const router = Router();
 
 router.use("/auth", authRoutes);
-router.use(fileRoutes);
+router.use("/file", fileRoutes);
 
 export default router;
