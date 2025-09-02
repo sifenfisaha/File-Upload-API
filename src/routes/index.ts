@@ -4,7 +4,7 @@ import { Router } from "express";
 
 const router = Router();
 
-router.use(authRoutes);
+router.use("/auth", authRoutes);
 router.use(fileRoutes);
 
 export default router;
