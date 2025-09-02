@@ -1,7 +1,7 @@
-import { ObjectId, Document } from "mongoose";
+import { Document, Types } from "mongoose";
 
 export interface Iuser extends Document {
-  _id: ObjectId;
+  _id: Types.ObjectId;
   name: String;
   password: string;
   email: string;
@@ -14,6 +14,6 @@ export interface IFile extends Document {
   url: string;
   size: number;
   mimetype: string;
-  uploadedBy: ObjectId;
+  uploadedBy: Types.ObjectId;
   uploadedAt: Date;
 }
