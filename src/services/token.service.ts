@@ -11,7 +11,11 @@ export class TokenService {
     return jwt.sign({ userId, userRole }, env.JWT_SECRET, { expiresIn: "1h" });
   }
   static verifyToken<T extends Object = TokenPayload>(token: string): T | null {
-    const decoded = jwt.verify(token, env.JWT_SECRET);
-    return decoded as T;
+    try {
+      const decoded = jwt.verify(token, env.JWT_SECRET);
+      return decoded as T;
+    } catch (error) {
+      return null;
+    }
   }
 }
