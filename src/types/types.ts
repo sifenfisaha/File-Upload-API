@@ -7,3 +7,13 @@ export interface Iuser extends Document {
   email: string;
   role: "user" | "admin";
 }
+
+export interface IFile extends Document {
+  filename: string;
+  originalName: string;
+  url: string;
+  size: number;
+  mimetype: string;
+  uploadedBy: ObjectId;
+  uploadedAt: Date;
+}
